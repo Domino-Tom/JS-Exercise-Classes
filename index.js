@@ -44,8 +44,8 @@ class Person {
   constructor(name, age) {
     this.name = name;
     this.age = age;
+    this.stomach = [];
   }
-  stomach = [];
   eat(someFood) {
     if (this.stomach.length < 10) {
       this.stomach.push(someFood);
@@ -74,7 +74,29 @@ class Person {
 */
 
 class Car {
+  constructor(model, milesPerGallon) {
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  }
+  fill(gallons) {
+    this.tank += gallons;
+  }
+  drive(distance) {
+    const gallonsConsumed = distance/this.milesPerGallon;
 
+    if (this.tank - gallonsConsumed >= 0) {
+      this.tank -= gallonsConsumed;
+      this.odometer += distance;
+      return;
+    } else if (this.tank - gallonsConsumed < 0) {
+      this.odometer += this.tank * this.milesPerGallon;
+      this.tank = 0;
+    }
+
+    return `I ran out of fuel at ${this.odometer} mile!`;
+  }
 }
 
 /*
