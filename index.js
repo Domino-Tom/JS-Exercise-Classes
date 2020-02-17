@@ -187,7 +187,8 @@ class Student extends Lambdasian {
     return `${this.name} has begun sprint challenge on ${subject}`;
   }
   graduate(score) {
-    this.grade = this.grade + score < 0 ? 0: this.grade + score;
+    const newGrade = this.grade + score;
+    this.grade = newGrade < 0 ? 0: newGrade > 100 ? 100: newGrade;
     if (this.grade < 70) {
       return `Keep trying`;
     }
